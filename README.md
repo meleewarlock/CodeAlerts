@@ -1,7 +1,9 @@
 ### Real-Time Donation Alert System README
 
 #### Overview
-A Node.js project enabling live donation alerts for streamers, utilizing Express, WebSocket, HTML, and JavaScript.
+A Node.js project enabling live donation alerts for streamers, utilizing Express, WebSocket, HTML, and JavaScript. This prototype serves as a test project; while operational as is, some features may require further development, improvement, or might be missing.
+
+
 
 #### Features
 - Real-time alerts with WebSocket.
