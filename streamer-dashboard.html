@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Streamer Dashboard</title>
+    <link rel="stylesheet" href="dashboard-style.css">
+</head>
+<body>
+    <div class="dashboard">
+        <!-- Add enctype="multipart/form-data" to ensure file uploads are handled correctly -->
+        <form id="alertConfigForm" enctype="multipart/form-data">
+            <div class="tooltip">
+                Color: <input type="color" name="alertColor" value="#ff0000" title="Choose your color">
+                <span class="tooltiptext">Change the alert text color</span>
+            </div>
+            <div class="tooltip">
+                Size: <input type="number" name="alertSize" value="20">
+                <span class="tooltiptext">Set the text size (in px)</span>
+            </div>
+            <div class="tooltip">
+                Font: <input type="text" name="alertFont" value="Arial">
+                <span class="tooltiptext">Choose the text font</span>
+            </div>
+            <div class="tooltip">
+                Fade In Duration (ms): <input type="number" name="fadeInDuration" value="500" title="Duration for the alert to fade in">
+                <span class="tooltiptext">Duration for the alert to fade in (ms)</span>
+            </div>
+            <div class="tooltip">
+                Fade Out Duration (ms): <input type="number" name="fadeOutDuration" value="500" title="Duration for the alert to fade out">
+                <span class="tooltiptext">Duration for the alert to fade out (ms)</span>
+            </div>
+            <div class="tooltip">
+                Display Duration (ms): <input type="number" name="displayDuration" value="5000" title="Duration for the alert to stay visible">
+                <span class="tooltiptext">Duration for the alert to stay visible (ms)</span>
+            </div>
+            <div class="tooltip">
+                Alert Sound: <input type="file" name="alertSound" accept="audio/*">
+                <span class="tooltiptext">Upload a sound for the alert</span>
+            </div>
+            <div class="tooltip">
+                Alert Image/GIF: <input type="file" name="alertImage" accept="image/*,image/gif">
+                <span class="tooltiptext">Upload an image or GIF for the alert</span>
+            </div>
+            <button type="submit">Save Configuration</button>
+        </form>
+        <button id="testAlert">Test Alert</button>
+    </div>
+    <!-- Alert Display Container -->
+    <div id="alerts" style="position: fixed; bottom: 10px; right: 10px; width: 300px; max-height: 50%; overflow-y: auto;"></div>
+
+    <script src="streamer-dashboard.js"></script>
+</body>
+</html>

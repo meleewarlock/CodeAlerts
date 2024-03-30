@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Donation Alert</title>
+    <link rel="stylesheet" href="dashboard-style.css" />
+    <!-- Ensure this path is correct -->
+    <style>
+      .alert-container {
+        display: none; /* Hidden by default */
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: rgba(0, 0, 0, 0.8);
+        color: #fff;
+        border-radius: 8px;
+        padding: 15px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        animation: slideIn 0.5s forwards;
+      }
+
+      .alert-logo {
+        height: 50px; /* Adjust logo size as needed */
+        display: block;
+        margin: 0 auto 10px;
+      }
+
+      .alert-message {
+        text-align: center;
+      }
+
+      .donation-amount {
+        font-size: 20px;
+        color: #4caf50;
+      }
+
+      #donation-message {
+        font-size: 16px; /* Smaller font size */
+        color: #ffd700; /* Gold color */
+        font-style: italic; /* Italicize text */
+        margin-top: 10px; /* Space above the message */
+      }
+
+      @keyframes slideIn {
+        from {
+          transform: translateY(100%);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="alert-container" class="alert-container">
+      <img src="icons8-hexagon-48.png" alt="Kin Logo" class="alert-logo" />
+      <div class="alert-message">
+        <strong id="donor-name">Anonymous</strong> just donated
+        <div class="donation-amount" id="donation-amount">$1.00</div>
+        <p id="donation-message"></p>
+        <!-- Initially empty; will be filled by JS -->
+      </div>
+    </div>
+
+    <audio
+      id="alert-sound"
+      src="Twitch Bits Donation Sound Effect _ SFX.mp4"
+      preload="auto"
+    ></audio>
+
+    <script>
+      const socket = new WebSocket(
+        "wss://ac0a9157-8293-422f-8543-f0adce718395-00-2p2hulq7r342b.kirk.replit.dev/",
+      );
+
+      socket.addEventListener("open", function (event) {
+        console.log("WebSocket is open now.");
+      });
+
+      socket.addEventListener("error", function (event) {
+        console.error("WebSocket error:", event);
+      });
+
+      socket.onmessage = (event) => {
+        const data = JSON.parse(event.data);
+
+        if (data.type === "donation" || data.type === "test-alert") {
+          const alertContainer = document.getElementById("alert-container");
+          const donorNameElem = document.getElementById("donor-name");
+          const donationAmountElem = document.getElementById("donation-amount");
+          const donationMessageElem =
+            document.getElementById("donation-message");
+          const alertSound = document.getElementById("alert-sound");
+
+          donorNameElem.textContent = data.data.donorName || "Anonymous";
+          donationAmountElem.textContent = `$${
+            data.data.donationAmount || "1.00"
+          }`;
+          donationMessageElem.textContent = data.data.donationMessage; // Set the donation message text
+
+          alertContainer.style.display = "block"; // Show the alert box
+          alertSound
+            .play()
+            .catch((error) => console.error("Error playing sound:", error));
+
+          setTimeout(() => {
+            alertContainer.style.display = "none"; // Hide the alert after a delay
+          }, 5000);
+        }
+      };
+    </script>
+  </body>
+</html>

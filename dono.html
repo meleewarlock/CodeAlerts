@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donate</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('background-image-url.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+        .container {
+            width: 400px;
+            background: rgba(255, 255, 255, 0.9);
+            margin: 50px auto;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            text-align: center;
+        }
+        .banner {
+            width: 100%;
+            margin: -20px -20px 20px -20px;
+        }
+        .avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin: 20px auto;
+        }
+        .username {
+            margin: 10px 0;
+            font-weight: 700;
+        }
+        .social-icons {
+            margin: 10px 0;
+        }
+        .social-icons img {
+            width: 24px;
+            height: 24px;
+            margin: 0 5px;
+            vertical-align: middle;
+        }
+        input, textarea {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        textarea {
+            resize: none; /* Prevent textarea resizing */
+        }
+        .donation-amount-container {
+            text-align: center;
+            margin: 10px 0;
+        }
+        .donation-amount {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 5px;
+            background: #FFF;
+            width: 80px;
+            margin: 10px auto;
+        }
+        .donation-amount input {
+            flex-grow: 1;
+            border: none;
+            text-align: center;
+            font-size: 1rem;
+            background: transparent;
+            pointer-events: none;
+        }
+        .currency-symbol, .lock-icon {
+            color: #aaa;
+            font-size: 1rem;
+            pointer-events: none;
+        }
+        .currency-symbol {
+            position: absolute;
+            left: 8px;
+        }
+        .lock-icon {
+            position: absolute;
+            right: 8px;
+        }
+        .donation-amount-label {
+            color: #aaa;
+            font-size: 0.75rem;
+            text-align: center;
+            display: block;
+            margin-top: -5px;
+        }
+        .footer-link {
+            display: block;
+            margin-top: 20px;
+            color: #3498db;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .footer-link strong {
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="banner">
+            <img src="backdropBLUE.png" alt="Banner" style="width:110%; height:auto;">
+        </div>
+        <img src="theface.jpg" alt="Avatar" class="avatar">
+        <div class="username">momlikesmymemes</div>
+        <div class="social-icons">
+            <a href="https://twitter.com/momlikesmymemes"><img src="icons8-twitter-48.png" alt="Twitter"></a>
+            <a href="https://instagram.com/momlikesmymemes"><img src="icons8-youtube-48.png" alt="Youtube"></a>
+        </div>
+        <input type="text" id="donorName" placeholder="Your name">
+        <textarea id="donationMessage" placeholder="Your message" maxlength="254"></textarea>
+        <div class="donation-amount-container">
+            <div class="donation-amount">
+                <span class="currency-symbol">$</span>
+                <input type="text" id="donationAmount" value="1" readonly>
+                <i class="fas fa-lock lock-icon"></i>
+            </div>
+            <span class="donation-amount-label">Minimum amount: $1</span>
+        </div>
+        <div id="button-container"><!-- Payment Button --></div>
+        <a href="https://code-wallet-app-link" target="_blank" class="footer-link">
+            Don't have the Code Wallet app? <strong>Click here to download.</strong>
+        </a>
+    </div>
+    <script type="module" src="dono.js"></script>
+</body>
+</html>
